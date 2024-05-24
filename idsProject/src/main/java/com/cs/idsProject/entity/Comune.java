@@ -13,10 +13,10 @@ public class Comune {
     private Integer id; // Identificatore univoco della città nel database.
 
     @Column(unique = true) // Specifica che il valore di questa colonna deve essere univoco.
-    private String cadastralCode; // Codice catastale della città.
+    private String codiceCatasto; // Codice catastale della città.
 
     private String name; // Nome della città.
-    private String region; // Regione in cui si trova la città.
+    private String regione; // Regione in cui si trova la città.
     private Integer istatCode; // Codice ISTAT della città.
     private float longitude; // Longitudine della posizione della città.
     private float latitude; // Latitudine della posizione della città.
@@ -32,10 +32,10 @@ public class Comune {
     private List<POI> points; // Lista dei punti di interesse associati alla città.
 
     // Costruttore che inizializza una città con i parametri forniti.
-    public Comune(String cadastralCode, String name, String region, Integer istatCode, float longitude, float latitude) {
-        this.cadastralCode = cadastralCode;
+    public Comune(String codiceCatasto, String name, String regione, Integer istatCode, float longitude, float latitude) {
+        this.codiceCatasto = codiceCatasto;
         this.name = name;
-        this.region = region;
+        this.regione = regione;
         this.istatCode = istatCode;
         this.longitude = longitude;
         this.latitude = latitude;
@@ -52,12 +52,12 @@ public class Comune {
         return id; // Restituisce l'ID della città.
     }
 
-    public String getCadastralCode() {
-        return cadastralCode; // Restituisce il codice catastale della città.
+    public String getCodiceCatasto() {
+        return codiceCatasto; // Restituisce il codice catastale della città.
     }
 
-    public void setCadastralCode(String cadastralCode) {
-        this.cadastralCode = cadastralCode; // Imposta il codice catastale della città.
+    public void setCodiceCatasto(String codiceCatasto) {
+        this.codiceCatasto = codiceCatasto; // Imposta il codice catastale della città.
     }
 
     public String getName() {
@@ -68,12 +68,12 @@ public class Comune {
         this.name = name; // Imposta il nome della città.
     }
 
-    public String getRegion() {
-        return region; // Restituisce la regione della città.
+    public String getRegione() {
+        return regione; // Restituisce la regione della città.
     }
 
-    public void setRegion(String region) {
-        this.region = region; // Imposta la regione della città.
+    public void setRegione(String regione) {
+        this.regione = regione; // Imposta la regione della città.
     }
 
     public Integer getIstatCode() {
