@@ -3,9 +3,9 @@ package com.cs.idsProject.entity;
 public enum StatoContenuto {
 
         Pending("Pending"),
-        Published("Rifiutato"),
-        Rejected("Pubblicato"),
-        Draft("Bozza");
+        Rifiutato("Rifiutato"),
+        Pubblicato("Pubblicato"),
+        Bozza("Bozza");
 
         private final String status;
 
