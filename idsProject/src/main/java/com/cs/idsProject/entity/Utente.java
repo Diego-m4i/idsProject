@@ -1,11 +1,11 @@
 package com.cs.idsProject.entity;
 
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+
 import org.springframework.data.annotation.Id;
 
+import javax.persistence.ElementCollection;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.util.Map;
 
 public class Utente {
