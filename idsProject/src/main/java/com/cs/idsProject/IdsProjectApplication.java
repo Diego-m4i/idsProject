@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class IdsProjectApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws  {
 		SpringApplication.run(IdsProjectApplication.class, args);
 	}
 
