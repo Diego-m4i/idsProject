@@ -14,7 +14,7 @@ public class Contenuto {
     private int idPunto;
 
     @Enumerated(EnumType.STRING)
-    private Stato stato;
+    private StatoContenuto stato;
 
     public int getId() {
         return id;
@@ -64,11 +64,11 @@ public class Contenuto {
         this.idPunto = idPunto;
     }
 
-    public Stato getStato() {
+    public StatoContenuto getStato() {
         return stato;
     }
 
-    public void setStato(Stato stato) {
+    public void setStato(StatoContenuto stato) {
         this.stato = stato;
     }
 }
