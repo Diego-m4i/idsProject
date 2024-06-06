@@ -7,7 +7,7 @@ import java.util.List;
 public class Contest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String comune;
     private String titolo;
     private String descrizione;
@@ -18,7 +18,7 @@ public class Contest {
     @OneToMany(mappedBy = "contest")
     private List<Contenuto> contenuti;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
