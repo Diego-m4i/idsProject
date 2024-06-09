@@ -8,11 +8,11 @@ import javax.persistence.Id;
 public class Ruolo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String titolo;
     private String descrizione;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -37,5 +37,4 @@ public class Ruolo {
     }
 
 
-    // Getters and setters
 }
