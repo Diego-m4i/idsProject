@@ -17,7 +17,7 @@ public class PuntoService {
         return puntoRepository.findAll();
     }
 
-    public Optional<POI> getPuntoById(int id) {
+    public Optional<POI> getPuntoById(Integer id) {
         return puntoRepository.findById(id);
     }
 
