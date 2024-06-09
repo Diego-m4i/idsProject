@@ -1,31 +1,41 @@
 package com.cs.idsProject.entity;
 
-
 import org.springframework.data.annotation.Id;
-
-import javax.persistence.ElementCollection;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Utente {
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private int id;
-        private String username;
-        private String password;
-        private String sesso;
-        private String luogoNascita;
-        private String email;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private String username;
+    private String password;
+    private String sesso;
+    private String luogoNascita;
+    private String email;
 
-        @ElementCollection
-        private Map<Comune, Ruolo> ruoli;
+    private List<Preferito> favorites;
+private List<Ruolo> ruolo;
 
-    public int getId() {
-        return id;
+    public Utente(Integer id, String username, String password, String sesso, String luogoNascita, String email ) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.sesso = sesso;
+        this.luogoNascita = luogoNascita;
+        this.email = email;
+        this.favorites = new ArrayList<>();
+        this.ruolo = new ArrayList<>();
+
     }
 
-    public void setId(int id) {
+    public Integer getId() {
+        return this.id;
+    }
+
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -68,13 +78,16 @@ public class Utente {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public Map<Comune, Ruolo> getRuoli() {
-        return ruoli;
+    public List<Ruolo> getRuolo() {
+        return ruolo;
     }
 
-    public void setRuoli(Map<Comune, Ruolo> ruoli) {
-        this.ruoli = ruoli;
+    public void addRuolo(Ruolo ruolo) {
+        this.ruolo.add(ruolo);
     }
-// getters and setters
+    public void addFavorite(Preferito favorite){
+        this.favorites.add(favorite);
     }
+
+
+}
