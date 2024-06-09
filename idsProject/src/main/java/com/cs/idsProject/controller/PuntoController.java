@@ -10,8 +10,9 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/poi")
+@RequestMapping("/api/punti")
 public class PuntoController {
+
     @Autowired
     private PuntoService puntoService;
 
@@ -21,22 +22,24 @@ public class PuntoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<POI> getPuntoById(@PathVariable int id) {
+    public ResponseEntity<POI> getPuntoById(@PathVariable Integer id) {
         Optional<POI> punto = puntoService.getPuntoById(id);
-        if (punto.isPresent()) {
-            return ResponseEntity.ok(punto.get());
-        } else {
+        return punto.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PostMapping("/{idComune}")
+    public POI addPunto(@PathVariable Integer idComune, @RequestBody POI punto) {
+        return puntoService.addPunto(idComune, punto);
+    }
+
+    @DeleteMapping("/{id}/{idComune}")
+    public ResponseEntity<Void> deletePunto(@PathVariable Integer id, @PathVariable Integer idComune) {
+        try {
+            puntoService.deletePunto(id, idComune);
+            return ResponseEntity.noContent().build();
+        } catch (IllegalArgumentException e) {
             return ResponseEntity.notFound().build();
         }
-    }
-
-    @PostMapping
-    public POI addPunto(@RequestBody POI punto) {
-        return puntoService.addPunto(punto);
-    }
-
-    @DeleteMapping("/{id}")
-    public void deletePunto(@PathVariable int id) {
-        puntoService.deletePunto(id);
     }
 }
