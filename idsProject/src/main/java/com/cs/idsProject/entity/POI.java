@@ -101,8 +101,8 @@ public class POI {
     }
 
     public Contenuto getContenuti(Integer contentId) {
-        for(Contenuto content : this.contenuti) {
-            if(content.getId().equals(id)) return content;
+        for (Contenuto content : this.contenuti) {
+            if (content.getId().equals(id)) return content;
         }
         return null;
     }
