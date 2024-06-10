@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class Contenuto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String descrizione;
     private String tipologia;
     private String autore;
@@ -16,7 +16,7 @@ public class Contenuto {
     @Enumerated(EnumType.STRING)
     private StatoContenuto stato;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
