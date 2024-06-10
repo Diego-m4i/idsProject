@@ -1,6 +1,7 @@
 package com.cs.idsProject.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -12,17 +13,30 @@ public class Contest {
     private String titolo;
     private String descrizione;
     private boolean pubblico;
-    private int idAnimatore;
+    private Integer idAnimatore;
+    private Integer idVincitore;
     private String dataScadenza;
 
     @OneToMany(mappedBy = "contest")
     private List<Contenuto> contenuti;
 
+    public Contest(Integer id, String comune, String titolo, String descrizione, boolean pubblico, Integer idAnimatore, Integer idVincitore, String dataScadenza, List<Contenuto> contenuti) {
+        this.id = id;
+        this.comune = comune;
+        this.titolo = titolo;
+        this.descrizione = descrizione;
+        this.pubblico = pubblico;
+        this.idAnimatore = idAnimatore;
+        this.idVincitore = idVincitore;
+        this.dataScadenza = dataScadenza;
+        this.contenuti = new ArrayList<>();
+    }
+
     public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -58,12 +72,20 @@ public class Contest {
         this.pubblico = pubblico;
     }
 
-    public int getIdAnimatore() {
+    public Integer getIdAnimatore() {
         return idAnimatore;
     }
 
-    public void setIdAnimatore(int idAnimatore) {
+    public void setIdAnimatore(Integer idAnimatore) {
         this.idAnimatore = idAnimatore;
+    }
+
+    public Integer getIdVincitore() {
+        return idVincitore;
+    }
+
+    public void setIdVincitore(Integer idVincitore) {
+        this.idVincitore = idVincitore;
     }
 
     public String getDataScadenza() {
@@ -81,4 +103,13 @@ public class Contest {
     public void setContenuti(List<Contenuto> contenuti) {
         this.contenuti = contenuti;
     }
+
+    public void addContent(Contenuto content){
+        this.contenuti.add(content);
+    }
+
+    public void removeContent(Contenuto content) {
+        this.contenuti.remove(content);
+    }
+
 }
