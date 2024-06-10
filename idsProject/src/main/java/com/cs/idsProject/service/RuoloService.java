@@ -18,7 +18,7 @@ public class RuoloService {
         return ruoloRepository.findAll();
     }
 
-    public Optional<Ruolo> getRuoloById(int id) {
+    public Optional<Ruolo> getRuoloById(Integer id) {
         return ruoloRepository.findById(id);
     }
 
@@ -26,7 +26,7 @@ public class RuoloService {
         return ruoloRepository.save(ruolo);
     }
 
-    public void deleteRuolo(int id) {
+    public void deleteRuolo(Integer id) {
         ruoloRepository.deleteById(id);
     }
 }
