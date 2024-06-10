@@ -53,4 +53,14 @@ public class ContestController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    @PostMapping("/{idContest}/proclaim-winner")
+    public ResponseEntity<Contest> proclaimWinner(@PathVariable Integer idContest, @RequestParam Integer idVincitore) {
+        try {
+            Contest updatedContest = contestService.proclaimWinner(idContest, idVincitore);
+            return ResponseEntity.ok(updatedContest);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(null);
+        }
+    }
 }
