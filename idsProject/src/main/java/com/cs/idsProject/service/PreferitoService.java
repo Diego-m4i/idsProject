@@ -16,7 +16,7 @@ public class PreferitoService {
     private PreferitoRepository preferitoRepository;
 
     public Preferito aggiungiPreferito(Utente utente, Contenuto contenuto) {
-        Preferito preferito = new Preferito(utente, contenuto);
+        Preferito preferito = new Preferito(utente.getId(), contenuto);
         return preferitoRepository.save(preferito);
     }
 
