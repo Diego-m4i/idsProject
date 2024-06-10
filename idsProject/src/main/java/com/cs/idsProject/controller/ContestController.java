@@ -30,13 +30,27 @@ public class ContestController {
         }
     }
 
-    @PostMapping
-    public Contest addContest(@RequestBody Contest contest) {
-        return contestService.addContest(contest);
+    @PostMapping("/{idComune}")
+    public ResponseEntity<Contest> addContest(@RequestBody Contest contest, @PathVariable Integer idComune) {
+        try {
+            Contest createdContest = contestService.addContest(contest, idComune);
+            return ResponseEntity.ok(createdContest);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteContest(@PathVariable int id) {
-        contestService.deleteContest(id);
+    @DeleteMapping("/{idComune}/{idContest}")
+    public ResponseEntity<Void> deleteContest(@PathVariable Integer idComune, @PathVariable Integer idContest) {
+        try {
+            boolean isDeleted = contestService.deleteContest(idComune, idContest);
+            if (isDeleted) {
+                return ResponseEntity.noContent().build();
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 }
