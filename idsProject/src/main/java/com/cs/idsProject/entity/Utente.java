@@ -1,6 +1,7 @@
 package com.cs.idsProject.entity;
 
 import org.springframework.data.annotation.Id;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.util.ArrayList;
@@ -17,9 +18,9 @@ public class Utente {
     private String email;
 
     private List<Preferito> favorites;
-private List<Ruolo> ruolo;
+    private List<Ruolo> ruolo;
 
-    public Utente(Integer id, String username, String password, String sesso, String luogoNascita, String email ) {
+    public Utente(Integer id, String username, String password, String sesso, String luogoNascita, String email) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -78,6 +79,7 @@ private List<Ruolo> ruolo;
     public void setEmail(String email) {
         this.email = email;
     }
+
     public List<Ruolo> getRuolo() {
         return ruolo;
     }
@@ -85,7 +87,8 @@ private List<Ruolo> ruolo;
     public void addRuolo(Ruolo ruolo) {
         this.ruolo.add(ruolo);
     }
-    public void addFavorite(Preferito favorite){
+
+    public void addFavorite(Preferito favorite) {
         this.favorites.add(favorite);
     }
 
