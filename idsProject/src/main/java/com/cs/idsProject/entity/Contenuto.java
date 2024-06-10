@@ -11,7 +11,7 @@ public class Contenuto {
     private String tipologia;
     private String autore;
     private String dataPubblicazione;
-    private int idPunto;
+    private Integer idPunto;
 
     @Enumerated(EnumType.STRING)
     private StatoContenuto stato;
@@ -20,7 +20,7 @@ public class Contenuto {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
