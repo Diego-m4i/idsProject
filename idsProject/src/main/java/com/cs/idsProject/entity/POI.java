@@ -2,7 +2,6 @@ package com.cs.idsProject.entity;
 
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +14,6 @@ public class POI {
     private String descrizione;
     private float longitudine;
     private float latitudine;
-
     private float altitudine;
     private Integer idComune;
 
@@ -103,12 +101,18 @@ public class POI {
     }
 
     public Contenuto getContenuti(Integer contentId) {
+        for(Contenuto content : this.contenuti) {
+            if(content.getId().equals(id)) return content;
+        }
         return null;
     }
 
     public void addContent(Contenuto content) {
+        this.contenuti.add(content);
     }
 
     public void removeContent(Integer contentId) {
+        this.contenuti.removeIf(c -> c.getId().equals(id));
+
     }
 }
