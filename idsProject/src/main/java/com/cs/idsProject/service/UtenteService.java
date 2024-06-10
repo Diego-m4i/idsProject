@@ -25,17 +25,17 @@ public class UtenteService {
             // L'utente esiste, controllo se il ruolo esiste
             Optional<Ruolo> ruoloOptional = ruoloService.getRuoloById(roleId);
             if (ruoloOptional.isPresent()) {
-                // Il ruolo esiste, lo assegno all'utente
+                // Il ruolo esiste
                 Utente utente = utenteOptional.get();
                 Ruolo ruolo = ruoloOptional.get();
                 utente.addRuolo(ruolo);
                 return utenteRepository.save(utente);
             } else {
-                // Il ruolo non esiste, puoi gestirlo di conseguenza
+                // Il ruolo non esiste
                 throw new RuntimeException("Il ruolo specificato non esiste");
             }
         } else {
-            // L'utente non esiste, puoi gestirlo di conseguenza
+            // L'utente non esiste
             throw new RuntimeException("L'utente specificato non esiste");
         }
     }

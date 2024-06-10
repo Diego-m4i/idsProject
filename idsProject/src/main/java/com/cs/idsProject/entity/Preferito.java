@@ -33,7 +33,6 @@ public class Preferito {
         this.contenuto = contenuto;
     }
 
-    // Getter e Setter
     public Integer getId() {
         return id;
     }
