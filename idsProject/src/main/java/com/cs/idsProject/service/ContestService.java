@@ -50,4 +50,15 @@ public class ContestService {
             throw new RuntimeException("Comune with ID " + idComune + " not found.");
         }
     }
+
+    public Contest proclaimWinner(Integer idContest, Integer idVincitore) {
+        Optional<Contest> contest = contestRepository.findById(idContest);
+        if (contest.isPresent()) {
+            Contest updatedContest = contest.get();
+            updatedContest.setIdVincitore(idVincitore); // Presupponendo che Contest abbia un campo "winner"
+            return contestRepository.save(updatedContest);
+        } else {
+            throw new RuntimeException("Contest with ID " + idContest + " not found.");
+        }
+    }
 }
