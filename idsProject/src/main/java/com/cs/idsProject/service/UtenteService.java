@@ -1,5 +1,6 @@
 package com.cs.idsProject.service;
 
+import com.cs.idsProject.entity.Ruolo;
 import com.cs.idsProject.entity.Utente;
 import com.cs.idsProject.repository.UtenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,38 @@ public class UtenteService {
     @Autowired
     private UtenteRepository utenteRepository;
 
+    @Autowired
+    private RuoloService ruoloService;
+
+    public Utente assignRole(Integer userId, Integer roleId) {
+        // Controllo se l'utente esiste
+        Optional<Utente> utenteOptional = utenteRepository.findById(userId);
+        if (utenteOptional.isPresent()) {
+            // L'utente esiste, controllo se il ruolo esiste
+            Optional<Ruolo> ruoloOptional = ruoloService.getRuoloById(roleId);
+            if (ruoloOptional.isPresent()) {
+                // Il ruolo esiste, lo assegno all'utente
+                Utente utente = utenteOptional.get();
+                Ruolo ruolo = ruoloOptional.get();
+                utente.addRuolo(ruolo);
+                return utenteRepository.save(utente);
+            } else {
+                // Il ruolo non esiste, puoi gestirlo di conseguenza
+                throw new RuntimeException("Il ruolo specificato non esiste");
+            }
+        } else {
+            // L'utente non esiste, puoi gestirlo di conseguenza
+            throw new RuntimeException("L'utente specificato non esiste");
+        }
+    }
+
+
     public List<Utente> getAllUser() {
         return utenteRepository.findAll();
     }
 
     public Optional<Utente> getUserById(Integer id) {
-        return utenteRepository.findById(id);
+        return this.utenteRepository.findById(id);
     }
 
     public Utente addUser(Utente utente) {
