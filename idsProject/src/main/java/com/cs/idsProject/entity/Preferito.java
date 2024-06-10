@@ -1,9 +1,6 @@
 package com.cs.idsProject.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -12,41 +9,29 @@ import javax.persistence.Table;
 @Table(name = "preferito")
 public class Preferito {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
     @ManyToOne
     @JoinColumn(name = "id_utente", nullable = false)
-    private Utente utente;
+    private Integer IDutente;
 
     @ManyToOne
     @JoinColumn(name = "id_contenuto", nullable = false)
     private Contenuto contenuto;
 
-    // Costruttori
+
     public Preferito() {
     }
 
-    public Preferito(Utente utente, Contenuto contenuto) {
-        this.utente = utente;
+    public Preferito(Integer IDutente, Contenuto contenuto) {
+        this.IDutente = IDutente;
         this.contenuto = contenuto;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIDutente() {
+        return IDutente;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Utente getUtente() {
-        return utente;
-    }
-
-    public void setUtente(Utente utente) {
-        this.utente = utente;
+    public void setIDutente(Integer IDutente) {
+        this.IDutente = IDutente;
     }
 
     public Contenuto getContenuto() {
