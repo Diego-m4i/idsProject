@@ -17,8 +17,8 @@ public class UtenteController {
     private UtenteService utenteService;
 
     @GetMapping
-    public List<Utente> getAllUsers() {
-        return utenteService.getAllUsers();
+    public List<Utente> getAllUser() {
+        return utenteService.getAllUser();
     }
 
     @GetMapping("/{id}")
