@@ -24,13 +24,17 @@ public class PuntoController {
     @GetMapping("/{id}")
     public ResponseEntity<POI> getPuntoById(@PathVariable Integer id) {
         Optional<POI> punto = puntoService.getPuntoById(id);
-        return punto.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+        return punto.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping("/{idComune}")
-    public POI addPunto(@PathVariable Integer idComune, @RequestBody POI punto) {
-        return puntoService.addPunto(idComune, punto);
+    public ResponseEntity<POI> addPunto(@PathVariable Integer idComune, @RequestBody POI punto) {
+        try {
+            POI savedPunto = puntoService.addPunto(idComune, punto);
+            return ResponseEntity.ok(savedPunto);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 
     @DeleteMapping("/{id}/{idComune}")
