@@ -22,11 +22,11 @@ public class ContenutoService {
         return contenutoRepository.findById(id);
     }
 
-    public Contenuto addContenuto(Contenuto contenuto) {
+    public Contenuto addContenuto(Contenuto contenuto, Integer idComune, Integer idPunto) {
         return contenutoRepository.save(contenuto);
     }
 
-    public void deleteContenuto(int id) {
-        contenutoRepository.deleteById(id);
+    public void deleteContenuto(Integer idContenuto, Integer idComune, Integer idPunto) {
+        contenutoRepository.deleteById(idContenuto);
     }
 }
