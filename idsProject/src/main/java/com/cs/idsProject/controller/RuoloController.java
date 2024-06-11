@@ -22,21 +22,23 @@ public class RuoloController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Ruolo> getRuoloById(@PathVariable int id) {
+    public ResponseEntity<Ruolo> getRuoloById(@PathVariable Integer id) {
         Optional<Ruolo> ruolo = ruoloService.getRuoloById(id);
         return ruolo.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Ruolo createRuolo(@RequestBody Ruolo ruolo) {
-        return ruoloService.addRuolo(ruolo);
+    public ResponseEntity<Ruolo> addRuolo(@RequestBody Ruolo ruolo) {
+        Ruolo savedRuolo = ruoloService.addRuolo(ruolo);
+        return ResponseEntity.ok(savedRuolo);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteRuolo(@PathVariable int id) {
-        if (ruoloService.getRuoloById(id).isPresent()) {
+    public ResponseEntity<Void> deleteRuolo(@PathVariable Integer id) {
+        Optional<Ruolo> ruolo = ruoloService.getRuoloById(id);
+        if (ruolo.isPresent()) {
             ruoloService.deleteRuolo(id);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.notFound().build();
         }
