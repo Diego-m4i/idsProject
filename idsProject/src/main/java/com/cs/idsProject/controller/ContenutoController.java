@@ -12,6 +12,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/contenuti")
 public class ContenutoController {
+
     @Autowired
     private ContenutoService contenutoService;
 
@@ -23,20 +24,27 @@ public class ContenutoController {
     @GetMapping("/{id}")
     public ResponseEntity<Contenuto> getContenutoById(@PathVariable int id) {
         Optional<Contenuto> contenuto = contenutoService.getContenutoById(id);
-        if (contenuto.isPresent()) {
-            return ResponseEntity.ok(contenuto.get());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return contenuto.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Contenuto addContenuto(@RequestBody Contenuto contenuto) {
-        return contenutoService.addContenuto(contenuto);
+    public ResponseEntity<Contenuto> addContenuto(@RequestBody Contenuto contenuto,
+                                                  @RequestParam Integer idComune,
+                                                  @RequestParam Integer idPunto) {
+        Contenuto savedContenuto = contenutoService.addContenuto(contenuto, idComune, idPunto);
+        return ResponseEntity.ok(savedContenuto);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteContenuto(@PathVariable int id) {
-        contenutoService.deleteContenuto(id);
+    @DeleteMapping("/{idContenuto}")
+    public ResponseEntity<Void> deleteContenuto(@PathVariable Integer idContenuto,
+                                                @RequestParam Integer idComune,
+                                                @RequestParam Integer idPunto) {
+        Optional<Contenuto> contenuto = contenutoService.getContenutoById(idContenuto);
+        if (contenuto.isPresent()) {
+            contenutoService.deleteContenuto(idContenuto, idComune, idPunto);
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
