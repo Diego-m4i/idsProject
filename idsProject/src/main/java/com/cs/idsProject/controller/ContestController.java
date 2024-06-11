@@ -12,6 +12,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/contests")
 public class ContestController {
+
     @Autowired
     private ContestService contestService;
 
@@ -23,18 +24,14 @@ public class ContestController {
     @GetMapping("/{id}")
     public ResponseEntity<Contest> getContestById(@PathVariable int id) {
         Optional<Contest> contest = contestService.getContestById(id);
-        if (contest.isPresent()) {
-            return ResponseEntity.ok(contest.get());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return contest.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping("/{idComune}")
-    public ResponseEntity<Contest> addContest(@RequestBody Contest contest, @PathVariable Integer idComune) {
+    @PostMapping
+    public ResponseEntity<Contest> addContest(@RequestBody Contest contest, @RequestParam Integer idComune) {
         try {
-            Contest createdContest = contestService.addContest(contest, idComune);
-            return ResponseEntity.ok(createdContest);
+            Contest savedContest = contestService.addContest(contest, idComune);
+            return ResponseEntity.ok(savedContest);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(null);
         }
@@ -50,17 +47,17 @@ public class ContestController {
                 return ResponseEntity.notFound().build();
             }
         } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.notFound().build();
         }
     }
 
-    @PostMapping("/{idContest}/proclaim-winner")
-    public ResponseEntity<Contest> proclaimWinner(@PathVariable Integer idContest, @RequestParam Integer idVincitore) {
+    @PutMapping("/proclaim-winner")
+    public ResponseEntity<Contest> proclaimWinner(@RequestParam Integer idContest, @RequestParam Integer idVincitore) {
         try {
             Contest updatedContest = contestService.proclaimWinner(idContest, idVincitore);
             return ResponseEntity.ok(updatedContest);
         } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(null);
+            return ResponseEntity.notFound().build();
         }
     }
 }
