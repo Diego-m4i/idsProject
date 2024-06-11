@@ -26,7 +26,7 @@ public class ComuneService {
         return comuneRepository.save(comune);
     }
 
-    public void deleteComune(int id) {
+    public void deleteComune(Integer id) {
         comuneRepository.deleteById(id);
     }
 }
