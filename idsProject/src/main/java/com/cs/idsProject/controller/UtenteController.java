@@ -16,6 +16,9 @@ public class UtenteController {
     @Autowired
     private UtenteService utenteService;
 
+    public UtenteController(UtenteService utenteService) {
+        this.utenteService = utenteService;
+    }
     @GetMapping
     public List<Utente> getAllUtenti() {
         return utenteService.getAllUser();
