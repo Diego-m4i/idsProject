@@ -16,6 +16,9 @@ public class ContestController {
     @Autowired
     private ContestService contestService;
 
+     public ContestController(ContestService contestService) {
+        this.contestService = contestService;
+    }
     @GetMapping
     public List<Contest> getAllContests() {
         return contestService.getAllContests();
