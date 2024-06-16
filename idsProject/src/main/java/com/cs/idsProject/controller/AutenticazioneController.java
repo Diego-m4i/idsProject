@@ -15,6 +15,9 @@ public class AutenticazioneController {
     @Autowired
     private ServizioAutenticazione servizioAutenticazione;
 
+    public AutenticazioneController(ServizioAutenticazione servizioAutenticazione) {
+        this.servizioAutenticazione = servizioAutenticazione;
+    }
     @PostMapping("/login")
     public ResponseEntity<Utente> login(@RequestParam String username, @RequestParam String password) {
         Optional<Utente> utente = servizioAutenticazione.autenticazione(username, password);
