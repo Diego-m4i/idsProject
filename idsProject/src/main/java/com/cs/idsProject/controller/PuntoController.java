@@ -16,6 +16,9 @@ public class PuntoController {
     @Autowired
     private PuntoService puntoService;
 
+     public PuntoController(PuntoService puntoService) {
+        this.puntoService = puntoService;
+    }
     @GetMapping
     public List<POI> getAllPunti() {
         return puntoService.getAllPunti();
