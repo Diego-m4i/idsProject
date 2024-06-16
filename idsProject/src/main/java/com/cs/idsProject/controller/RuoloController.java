@@ -16,6 +16,9 @@ public class RuoloController {
     @Autowired
     private RuoloService ruoloService;
 
+    public RuoloController(RuoloService ruoloService) {
+        this.ruoloService = ruoloService;
+    }
     @GetMapping
     public List<Ruolo> getAllRuoli() {
         return ruoloService.getAllRuoli();
