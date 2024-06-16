@@ -16,6 +16,9 @@ public class ContenutoController {
     @Autowired
     private ContenutoService contenutoService;
 
+     public ContenutoController(ContenutoService contenutoService) {
+        this.contenutoService = contenutoService;
+    }
     @GetMapping
     public List<Contenuto> getAllContenuti() {
         return contenutoService.getAllContenuti();
