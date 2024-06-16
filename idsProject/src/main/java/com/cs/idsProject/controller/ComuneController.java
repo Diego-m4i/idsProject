@@ -16,6 +16,9 @@ public class ComuneController {
     @Autowired
     private ComuneService comuneService;
 
+    public ComuneController(ComuneService comuneService) {
+        this.comuneService = comuneService;
+    }
     @GetMapping
     public List<Comune> getAllComuni() {
         return comuneService.getAllComuni();
